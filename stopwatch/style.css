@@ -1,0 +1,279 @@
+      /* General Styles & Dark Theme using Facebook Blue */
+        :root {
+            --bg-color: #1877F2; /* Facebook Blue */
+            --text-color: #ffffff;
+            --button-bg: #1256B3; /* Darker blue for secondary buttons */
+            --button-hover: #1888FF; /* Brighter blue on hover */
+            --border-color: #3B5998; /* Facebook darker blue */
+            --accent-color: #ffffff; /* White text for digital display */
+            --display-bg: #001F3F; /* Very dark blue/navy for digital display area */
+        }
+
+        /* Light Theme */
+        body[data-theme="light"] {
+            --bg-color: #f0f2f5; /* Light Gray/Standard FB background */
+            --text-color: #1a1a1a;
+            --button-bg: #E4E6EB;
+            --button-hover: #D8DADF;
+            --border-color: #cccccc;
+            --accent-color: #1877F2; /* Primary blue accent for display */
+            --display-bg: #ffffff; /* White display background */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Updated flex properties to stack content vertically */
+            display: flex;
+            flex-direction: column; 
+            align-items: center; /* Center horizontally */
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease;
+            position: relative; /* Required for absolute positioning of the corner button */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Ensures all children are centered horizontally */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            padding: 2rem 0; 
+            /* Push container to the center of the vertical space */
+            margin: auto; 
+        }
+
+        #display {
+            font-family: 'monospace', monospace;
+            font-size: 3.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1rem;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2.5rem;
+            min-width: 300px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            /* Ensure the buttons are centered */
+            justify-content: center;
+            width: 100%;
+        }
+
+        .button {
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            /* Maintain transitions for smooth background color changes */
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Default shadow */
+            color: white; /* Standard text color */
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blue Button Styling */
+        
+        /* Start/Pause/Resume Button (Primary Action Blue) */
+        #startBtn { 
+            background-color: #2196F3; /* Prominent Blue */
+        }
+        #startBtn:hover {
+            background-color: #1E88E5; /* Darken button on hover */
+        }
+        
+        /* Lap Button Styling */
+        #lapBtn {
+            background-color: var(--button-bg); 
+            color: var(--accent-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #lapBtn:hover:not(:disabled) {
+            background-color: #0A3C7E; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+        #lapBtn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Clear Button style: Utility button placed above display */
+        #clearBtn {
+            background-color: var(--button-bg); /* Darker Blue */
+            margin-bottom: 1.5rem; 
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        #clearBtn:hover {
+            background-color: #0A3C7E;
+        }
+        
+        /* --- Theme Toggle Switch Styling (MODERN TOGGLE) --- */
+        .switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-checkbox {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-label {
+            display: block;
+            cursor: pointer;
+            width: 50px;
+            height: 25px;
+            background-color: var(--button-bg); /* Use button bg for switch track */
+            border-radius: 25px;
+            position: relative;
+            transition: background-color 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            content: '';
+            height: 21px;
+            width: 21px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* When checkbox is UNCHECKED (Light Theme is active, switch moved left) */
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--button-bg); /* Dark theme track color */
+        }
+
+        .toggle-checkbox:not(:checked) + .toggle-label {
+            background-color: #55acee; /* Light theme track color (Lighter Blue) */
+        }
+
+        .toggle-checkbox:not(:checked) + .toggle-label .toggle-slider {
+            transform: translateX(25px);
+        }
+        
+        /* --- END TOGGLE STYLING --- */
+
+        /* Lap List Container Styling */
+        #lapsContainer {
+            width: 90%;
+            max-width: 450px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            margin-top: 1.5rem;
+            /* Use slightly more transparent background for blending */
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+
+        .lap-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.5rem;
+            font-family: 'monospace', monospace;
+            font-size: 1rem;
+            background-color: #002855; /* Dark blue for lap background */
+            color: var(--accent-color);
+        }
+        .lap-item:nth-child(even) {
+            background-color: #003366; /* Slightly different dark blue */
+        }
+
+        .lap-number {
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .lap-time {
+            color: #FFC107; /* Amber/Gold color for the split time highlight */
+            font-weight: 600;
+        }
+        .overall-time {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        /* Scrollbar styles for laps container (Blue) */
+        #lapsContainer::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #lapsContainer::-webkit-scrollbar-thumb {
+            background-color: #1877F2;
+            border-radius: 10px;
+        }
+        #lapsContainer::-webkit-scrollbar-track {
+            background-color: #001F3F;
+            border-radius: 10px;
+        }
+
+        /* Copyright Footer Styling */
+        .copyright {
+            margin-top: 2rem; /* Add some space above the text */
+            padding-bottom: 1rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7); /* Muted white for dark theme */
+            width: 100%;
+            text-align: center;
+        }
+        body[data-theme="light"] .copyright {
+            color: rgba(0, 0, 0, 0.5); /* Muted black for light theme */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 0;
+            }
+            #display {
+                font-size: 2.5rem;
+                padding: 0.75rem 1.5rem;
+                min-width: 200px;
+            }
+            .buttons {
+                gap: 0.75rem;
+            }
+            .button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            #clearBtn {
+                margin-bottom: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            /* Apply responsive adjustment to the new corner switch */
+            .switch-container {
+                top: 10px;
+                right: 10px;
+            }
+            #lapsContainer {
+                max-width: 90%;
+            }
+        }

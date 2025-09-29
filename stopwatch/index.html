@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Theme Toggle Switch (Modern replacement) -->
+    <div class="switch-container">
+        <!-- Checkbox: checked = Dark Theme (initial state) -->
+        <input type="checkbox" id="themeToggle" class="toggle-checkbox" checked>
+        <label for="themeToggle" class="toggle-label">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <div class="container">
+        <!-- Clear button is above the counter -->
+        <button id="clearBtn" class="button">Clear</button>
+
+        <!-- Stopwatch Display -->
+        <div id="display">00:00:00:00</div>
+
+        <!-- Control Buttons (Start/Pause/Resume and Lap) -->
+        <div class="buttons">
+            <button id="startBtn" class="button">Start</button>
+            <button id="lapBtn" class="button" disabled>Lap</button>
+        </div>
+
+        <!-- Lap Times Display -->
+        <div id="lapsContainer">
+            <!-- Lap times will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="index.js"></script>
+
+    <!-- Copyright Text placed at the bottom -->
+    <div class="copyright">
+        <b>Copyright &copy; 2025 Victor Omerusure Umukoro (Student ID: ALT/SOE/025/4492)</b>
+    </div>
+</body>
+</html>
