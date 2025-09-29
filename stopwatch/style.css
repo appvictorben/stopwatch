@@ -219,7 +219,7 @@
             opacity: 0.8;
         }
         
-        /* Scrollbar styles for laps container (Blue) */
+        /* Scrollbar styles for laps container = Blue */
         #lapsContainer::-webkit-scrollbar {
             width: 8px;
         }

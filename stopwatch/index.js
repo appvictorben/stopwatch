@@ -66,7 +66,7 @@
         
         // Lap Functionality
         function recordLap() {
-            // Calculate the time elapsed since the last lap (or start)
+            // Calculate the time elapsed since the last lap or start
             const splitTime = totalMilliseconds - lastLapTime;
             
             // Update lastLapTime to the current total time
